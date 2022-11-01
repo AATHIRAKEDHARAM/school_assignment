@@ -1,0 +1,42 @@
+{% extends 'student/student_master.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="pd">
+    <center>
+        <form action="" method="POST" style="border:1px solid #ccc; width: 40%; ">
+            {% csrf_token %}
+
+            <div class="container pd">
+                <h1>Student Details</h1>
+
+                <hr>
+
+                <div class="upload" style="margin-top: 3%">
+                    <img id="img" src="{% static 'images/noprofile.jpg' %}" width="100" height="100" alt="" />
+                    <div class="round">
+                        <input type="file" id="image" name="image" />
+                        <i class="fa fa-camera" style="color: #fff"></i>
+                    </div>
+                </div>
+                <input type="text" placeholder="Name" name="name" id="name">
+
+                <input type="text" placeholder="Phone Number" name="phone" id="phone">
+
+                <input type="text" placeholder="Age" name="age" id="age">
+
+                
+                <div class="clearfix">
+
+                    <button type="submit" class=" btn btn-primary ">Submit</button>
+                </div>
+                
+        </form>
+
+        </table>
+    </center>
+</div>
+
+
+{% endblock %}

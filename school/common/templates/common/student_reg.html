@@ -1,0 +1,245 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Student Register</title>
+    <style>
+        .child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+            font-size: 20px;
+            line-height: 20px;
+            color: #ffe8c3;
+            background-color: whitesmoke;
+            border-radius: 2px;
+
+        }
+
+        #hf {
+            background-color: #0b6260;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        button:hover {
+            opacity: 1;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #f44336;
+        }
+
+        /* Float cancel and signup buttons and add an equal width */
+        .cancelbtn,
+        .signupbtn {
+            float: left;
+            width: 50%;
+        }
+
+        /* Add padding to container elements */
+        .container {
+            padding: 16px;
+
+        }
+
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Change styles for cancel button and signup button on extra small screens */
+        @media screen and (max-width: 300px) {
+
+            .cancelbtn,
+            .signupbtn {
+                width: 100%;
+            }
+        }
+
+        .pd {
+            padding-top: 2%;
+            text-align: center;
+        }
+
+        .upload {
+            width: 100px;
+            position: relative;
+            margin: auto;
+        }
+
+        .upload img {
+            border-radius: 50%;
+            border: 6px solid #eaeaea;
+        }
+
+        .upload .round {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #00b4ff;
+            width: 32px;
+            height: 32px;
+            line-height: 33px;
+            text-align: center;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .upload .round input[type="file"] {
+            position: absolute;
+            transform: scale(2);
+            opacity: 0;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="hf" class="child">SCHOOL</div>
+    <div class="pd">
+        <center>
+            <form action="" method="POST" enctype="multipart/form-data" style="border:1px solid #ccc; width: 40%; ">
+                {% csrf_token %}
+
+                <div class="container pd">
+                    <h1>Student Register</h1>
+
+                    <hr>
+
+                    <div class="upload" style="margin-top: 3%">
+                        <img id="img" src="{% static 'images/noprofile.jpg' %}" width="100" height="100" alt="" />
+                        <div class="round">
+                            <input type="file" id="image" name="image" onchange="validateSize(this)" required/>
+                            <i class="fa fa-camera" style="color: #fff"></i>
+                        </div>
+                    </div>
+
+                    <input type="text" placeholder="Name" name="name" id="name">
+
+                    <input type="text" placeholder="Date of Birth" name="dob" id="dob">
+
+                    <input type="text" placeholder="Phone Number" name="phone" id="phone">
+
+                    <input type="text" placeholder="Username" name="username" id="username">
+
+                    <input type="password" placeholder="Password" name="password" id="password">
+
+                    <small id="password_err"></small>
+                    <small style="color: red;">{{msg}}</small>
+
+                    <div class="clearfix">
+
+                        <button type="submit" onclick="validate()" class=" btn btn-primary ">Register</button>
+                    </div>
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Already a user? <a href="{% url 'common:student_login' %}">Login</a></p>
+
+                    </div>
+            </form>
+
+            </table>
+        </center>
+    </div>
+
+    <script>
+        function validateSize(input) {
+            const fileSize = input.files[0].size / 1024 / 1024; // in MiB
+            if (fileSize > 2) {
+                alert('File size exceeds 2 MiB');
+                 $("#image").val(''); //for clearing with Jquery
+            } else {
+                // Proceed further
+            }
+        }
+        function validate() {
+            var password = document.getElementById("password");
+            var password_err = document.getElementById("password_err")
+            var password_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/
+            var status = 1
+
+            if (password == "") {
+                document.getElementById("password_err").innerHTML = "Enter a password";
+                document.getElementById("password_err").style.color = "red";
+                document.getElementById("password").style.borderColor = " solid red";
+                status = 0;
+
+            } else if (!password.value.match(password_regex)) {
+                document.getElementById("password_err").innerHTML = "*Password atleast contain 8 characters including numbers, symbols, upper and lower characters";
+                document.getElementById("password_err").style.color = "red";
+                document.getElementById("password").style.borderColor = "solid red";
+                status = 0;
+
+
+            } else {
+                document.getElementById("password_err").innerHTML = "";
+                document.getElementById("password").style.borderColor = "solid green";
+                status = 1;
+            }
+
+            if (status == 0) {
+                return false;
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

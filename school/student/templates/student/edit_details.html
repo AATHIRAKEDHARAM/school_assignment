@@ -1,0 +1,46 @@
+{% extends 'student/student_master.html' %}
+
+{% load static %}
+{% block content %}
+
+<!-- Content body start -->
+<div id="main-wrapper">
+    <div class="content-body">
+      <div class="container-fluid">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="upload" style="margin-top: 3%">
+            <img id="img" src="{% static 'images/noprofile.jpg' %}" width="100" height="100" alt="" />
+            <div class="round">
+                <input type="file" id="image" name="image"/>
+                <i class="fa fa-camera" style="color: #fff"></i>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label for="name" style="color: black;">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required/>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="phone" style="color: black;">Phone Number</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required/>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="dob" style="color: black;">Date of birth</label>
+            <input type="text" class="form-control" id="dob" name="dob" placeholder="Date of birth" required/>
+          </div>
+          <br>
+          <!-- Register button -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Content body end -->
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'school_admin/admin_master.html' %}
+
+{% load static %}
+{% block content %}
+
+<!-- Content body start -->
+<div id="main-wrapper">
+    <div class="content-body">
+      <div class="container-fluid">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <!-- Edit input -->
+          <div class="form-group">
+            <label for="name" style="color: black;">Edit Mark</label>
+            <input type="text" class="form-control" id="edit_mark" name="edit_mark" placeholder="Edit mark of student" required/>
+          </div>
+          <br>
+          <!-- Register button -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Content body end -->
+
+
+{% endblock %}

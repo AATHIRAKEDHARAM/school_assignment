@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+            font-size: 20px;
+            line-height: 20px;
+            color: #ffe8c3;
+            background-color: whitesmoke;
+            border-radius: 2px;
+
+        }
+
+        #hf {
+            background-color: #0b6260;
+        }
+
+        .pdt {
+            padding-top: 5%;
+            padding-left: 35%;
+        }
+
+        .pdb {
+            padding-bottom: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hf" class="child">SCHOOL</div>
+    <div class="pdt">
+        <form method="POST" style="width: 50%; border:1px solid #ccc; padding: 20px;;">
+            {% csrf_token %}
+            <center>
+                <h2 class="pdb">Student Login</h2>
+            </center>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Username" />
+
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="form2Example2" name="password" class="form-control "
+                    placeholder="Password" />
+               
+
+            </div>
+
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Not a user? <a href="{% url 'common:student_reg' %}">Register</a></p>
+
+
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

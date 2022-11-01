@@ -1,0 +1,57 @@
+{% extends 'school_admin/admin_master.html' %}
+
+{% load static %}
+{% block content %}
+
+<table class="table caption-top">
+    <caption class="text-center">Student Details</caption>
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Age</th>
+            <th scope="col">Mark of student</th>
+            <th scope="col">Add Marks</th>
+            <th scope="col">Edit</th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>    Aathira</td>
+            <td>9946990209</td>
+            <td>22</td>
+            <td>100</td>
+            <td><!-- Add button -->
+                <a href="{% url 'school_admin:add_mark' %}" style="color: black;"><i class="fa fa-plus"></i></a></td>
+            <td><!-- Edit button -->
+                <a href="{% url 'school_admin:edit_mark' %}" style="color: black;"><i class="fa fa-pencil"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Nikhil</td>
+            <td>7012952147</td>
+            <td>21</td>
+            <td>100</td>
+            <td><!-- Add button -->
+                <a href="{% url 'school_admin:add_mark' %}" style="color: black;"><i class="fa fa-plus"></i></a></td>
+            <td><!-- Edit button -->
+                <a href="{% url 'school_admin:edit_mark' %}" style="color: black;"><i class="fa fa-pencil"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>chinnu</td>
+            <td>8012952147</td>
+            <td>20</td>
+            <td>100</td>
+            <td><!-- Add button -->
+                <a href="{% url 'school_admin:add_mark' %}" style="color: black;"><i class="fa fa-plus"></i></a></td>
+            <td><!-- Edit button -->
+                <a href="{% url 'school_admin:edit_mark' %}" style="color: black;"><i class="fa fa-pencil"></i></a></td>
+          </tr>
+          
+    </tbody>
+  </table>
+
+{% endblock %}
